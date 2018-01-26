@@ -10,6 +10,10 @@ public class Luchador {
 	private int nivel;
 	private int ph;
 
+	public Luchador() {
+
+	}
+
 	public Luchador(String nombre, int fuerza, int vida) {
 		this.nombre = nombre;
 		this.fuerza = fuerza;
@@ -115,7 +119,25 @@ public class Luchador {
 
 	}
 
+	int rangoFueEnemigo() {
+		int min = fuerza - 3;
+		int max = fuerza + 3;
+		int range = (max - min) + 1;
+		return (int) (Math.random() * range) + min;
+
+	}
+	int rangoVidEnemigo() {
+		int min = vida - 2;
+		int max = vida + 5;
+		int range = (max - min) + 1;
+		return (int) (Math.random() * range) + min;
+
+	}
+
 	public void comenzarLucha() {
+		Luchador enem = new Luchador();
+		enem.setNombre("Contrincante");
+		enem.setFuerza(rangoFueEnemigo());
 
 	}
 
