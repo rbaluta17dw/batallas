@@ -19,12 +19,13 @@ public class Luchador {
 	public Luchador(String nombre) {
 		this.nombre = nombre;
 		fuerza = 5;
-		vidamax = 5;
-		vida = vidamax;
+		vidamax = 10;
 		nivel = 1;
 		puntosxp = 0;
 		ph = 10;
+		getInfo();
 		mejorarPersonaje();
+		vida = vidamax;
 	}
 
 	public String getNombre() {
@@ -130,24 +131,25 @@ public class Luchador {
 			} else {
 				System.out.println("Podras subir la fuerza en el menu de 'MEJORA'");
 			}
-			System.out.println("¿Cuantos puntos quieres subir a la vida?");
-			puntos = scan.nextInt();
-			if ((ph - puntos) >= 0) {
-				ph = ph - puntos;
-				vida = vida + puntos;
+		}
+		System.out.println("¿Cuantos puntos quieres subir a la vida?");
+		puntos = scan.nextInt();
+		if ((ph - puntos) >= 0) {
+			ph = ph - puntos;
+			vidamax = vidamax + puntos;
+			vida = vidamax;
+		} else {
+			System.out.println("No tienes puntos suficientes");
+			System.out.println("Todos tus puntos se van a redirigir a tu vida (y/n");
+			resp = scan.nextLine();
+			if (resp.equalsIgnoreCase("y")) {
+				vidamax = vidamax + ph;
+				vida = vidamax;
+				ph = 0;
 			} else {
-				System.out.println("No tienes puntos suficientes");
-				System.out.println("Todos tus puntos se van a redirigir a tu vida (y/n");
-				resp = scan.nextLine();
-				if (resp.equalsIgnoreCase("y")) {
-					vida = vida + ph;
-					ph = 0;
-				} else {
-					System.out.println("Podras subir la vida en el menu de 'MEJORA'");
-				}
+				System.out.println("Podras subir la vida en el menu de 'MEJORA'");
 			}
 		}
-
 	}
 
 	int rangoFueEnemigo() {
@@ -177,14 +179,15 @@ public class Luchador {
 			System.out.println("Ronda " + ronda);
 			System.out.println(nombre + " hace " + fuerza + " daño a " + enem.nombre);
 			enem.vida = enem.vida - fuerza;
+			System.out.println(enem.nombre + " tiene " + enem.vida + " vida");
 			System.out.println(enem.nombre + " hace " + enem.fuerza + " daño a " + nombre);
 			vida = vida - enem.fuerza;
+			System.out.println(nombre + " tiene " + vida + " vida");
 		}
 		if (vida <= 0) {
 			System.out.println("¡HAS MUERTO!");
 			System.exit(0);
-		}
-		if (vida > 0) {
+		} else if (enem.vida <= 0) {
 			System.out.println("Sales victorioso de la batallas");
 			puntosxp = puntosxp + 10;
 			System.out.println("Recomendamos que descanses");

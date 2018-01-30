@@ -16,7 +16,7 @@ public class MainLucha {
 		
 		
 		
-		System.out.println("Como se llamara tu luchador?");
+		System.out.println("¿Como se llamara tu luchador?");
 		String nombre = scan.nextLine();
 		Luchador jugador = new Luchador(nombre);
 		
