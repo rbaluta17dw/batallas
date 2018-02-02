@@ -18,7 +18,7 @@ public class MainLucha {
 		
 		System.out.println("¿Como se llamara tu luchador?");
 		String nombre = scan.nextLine();
-		Luchador jugador = new Luchador(nombre);
+		Luchador jugador = new Luchador(nombre);	
 		
 		
 		do{
@@ -39,6 +39,7 @@ public class MainLucha {
 				break;
 			case DESCANSAR:
 				jugador.descansar();
+				jugador.subirNivel();
 				break;
 			case MEJORAR:
 				jugador.mejorarPersonaje();
@@ -51,7 +52,7 @@ public class MainLucha {
 				break;
 			}
 
-		}while (opcion != 4);
+		}while (opcion != SALIR);
 
 	}
 

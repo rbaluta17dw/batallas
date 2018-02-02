@@ -18,7 +18,7 @@ public class Luchador {
 
 	public Luchador(String nombre) {
 		this.nombre = nombre;
-		fuerza = 5;
+		fuerza = 2;
 		vidamax = 10;
 		nivel = 1;
 		puntosxp = 0;
@@ -105,6 +105,7 @@ public class Luchador {
 			ph = ph + 1;
 			mejorarPersonaje();
 			vida = vidamax;
+			System.out.println("Has subido de nivel");
 		} else {
 			System.out.println("Aun no tienes suficiente xp, vuelve cuando tengas mas");
 		}
@@ -117,7 +118,7 @@ public class Luchador {
 		System.out.println("¿Cuantos puntos quieres subir a la fuerza?");
 		int puntos;
 		String resp;
-		puntos = scan.nextInt();
+		puntos = Integer.parseInt(scan.nextLine());
 		if ((ph - puntos) >= 0) {
 			ph = ph - puntos;
 			fuerza = fuerza + puntos;
@@ -133,7 +134,7 @@ public class Luchador {
 			}
 		}
 		System.out.println("¿Cuantos puntos quieres subir a la vida?");
-		puntos = scan.nextInt();
+		puntos = Integer.parseInt(scan.nextLine());
 		if ((ph - puntos) >= 0) {
 			ph = ph - puntos;
 			vidamax = vidamax + puntos;
@@ -174,21 +175,27 @@ public class Luchador {
 		enem.setFuerza(rangoFueEnemigo());
 		enem.setVida(rangoVidEnemigo());
 		int ronda = 0;
-		while (vida >= 0 || enem.vida >= 0) {
+		while (vivo() && enem.vivo()) {
 			ronda++;
 			System.out.println("Ronda " + ronda);
-			System.out.println(nombre + " hace " + fuerza + " daño a " + enem.nombre);
-			enem.vida = enem.vida - fuerza;
-			System.out.println(enem.nombre + " tiene " + enem.vida + " vida");
-			System.out.println(enem.nombre + " hace " + enem.fuerza + " daño a " + nombre);
-			vida = vida - enem.fuerza;
-			System.out.println(nombre + " tiene " + vida + " vida");
+			if (vivo()) {
+				System.out.println(enem.nombre + " tiene " + enem.vida + " vida");
+				System.out.println("\n" + nombre + " hace " + fuerza + " daño a " + enem.nombre);
+				enem.vida = enem.vida - fuerza;
+				System.out.println(enem.nombre + " tiene " + enem.vida + " vida\n");
+			}
+			if (enem.vivo()) {
+				System.out.println(nombre + " tiene " + vida + " vida");
+				System.out.println("\n" + enem.nombre + " hace " + enem.fuerza + " daño a " + nombre);
+				vida = vida - enem.fuerza;
+				System.out.println(nombre + " tiene " + vida + " vida\n");
+			}
 		}
-		if (vida <= 0) {
+		if (vivo() == false) {
 			System.out.println("¡HAS MUERTO!");
 			System.exit(0);
-		} else if (enem.vida <= 0) {
-			System.out.println("Sales victorioso de la batallas");
+		} else if (enem.vivo() == false) {
+			System.out.println("\nSales victorioso de la batalla");
 			puntosxp = puntosxp + 10;
 			System.out.println("Recomendamos que descanses");
 		}
@@ -198,5 +205,21 @@ public class Luchador {
 		System.out.println("Te sientes descansado, tus puntos de vida vuelven a estar llenos");
 		vida = vidamax;
 		System.out.println("Tienes " + vida + " vida");
+	}
+
+	boolean vivo() {
+		if (vida > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public Luchador crearLuchador() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("¿Como se llamara tu luchador?");
+		String nombre = scan.nextLine();
+		Luchador jugador = new Luchador(nombre);
+		return jugador;
 	}
 }
