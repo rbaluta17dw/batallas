@@ -5,18 +5,19 @@ import java.util.Scanner;
 import batalla.Luchador;
 
 public class LuchaMenu {
-	public static void luchaMenu() {
-		final int LUCHAR = 1;
-		final int INFO = 2;
-		final int DESCANSAR = 3;
-		final int MEJORAR = 4;
-		final int SALIR = 5;
-		int opcion;
-		
+	final int LUCHAR = 1;
+	final int INFO = 2;
+	final int DESCANSAR = 3;
+	final int MEJORAR = 4;
+	final int SALIR = 5;
+
+	public void lanzarMenu() throws NumberFormatException{
 		Scanner scan = new Scanner(System.in);
+
 		System.out.println("¿Como se llamara tu luchador?");
 		String nombre = scan.nextLine();
 		Luchador jugador = new Luchador(nombre);
+		int opcion;
 		do {
 
 			System.out.println(LUCHAR + "-Ir a la batalla.");
