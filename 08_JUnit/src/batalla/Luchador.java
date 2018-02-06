@@ -106,6 +106,7 @@ public class Luchador {
 			mejorarPersonaje();
 			vida = vidamax;
 			xpneces = xpneces - (100*nivel);
+			puntosxp = 0;
 			nivel++;
 			System.out.println("Has subido de nivel");
 		} else {
