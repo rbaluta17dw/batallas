@@ -156,7 +156,7 @@ public class Luchador {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("La opcion introducida es erronea (por favor inserte numeros)");
+			System.out.println("La opcion introducida es erronea vaya al apartado de mejora (por favor inserte numeros)");
 		}
 
 	}
