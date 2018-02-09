@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import batalla.Luchador;
 import vista.LuchaMenu;
 
 public class PruebaUnitarias {
