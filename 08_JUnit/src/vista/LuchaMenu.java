@@ -14,9 +14,7 @@ public class LuchaMenu {
 	public void lanzarMenu() throws NumberFormatException{
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println("¿Como se llamara tu luchador?");
-		String nombre = scan.nextLine();
-		Luchador jugador = new Luchador(nombre);
+		Luchador jugador = Luchador.crearLuchador();
 		int opcion;
 		do {
 

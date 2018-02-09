@@ -113,14 +113,13 @@ public class Luchador {
 		}
 	}
 
-	public void mejorarPersonaje() {
+	public void mejorarPersonaje() throws NumberFormatException {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Puedes subir un atributo");
 		System.out.println("Tienes " + ph + " puntos de habilidad");
 		System.out.println("¿Cuantos puntos quieres subir a la fuerza?");
 		int puntos;
 		String resp;
-		try {
 			puntos = Integer.parseInt(scan.nextLine());
 			if ((ph - puntos) >= 0) {
 				ph = ph - puntos;
@@ -154,9 +153,6 @@ public class Luchador {
 					System.out.println("Podras subir la vida en el menu de 'MEJORA'");
 				}
 			}
-		} catch (Exception e) {
-			System.out.println("La opcion introducida es erronea vaya al apartado de mejora (por favor inserte numeros)");
-		}
 
 	}
 
@@ -221,7 +217,7 @@ public class Luchador {
 		}
 	}
 
-	public Luchador crearLuchador() {
+	public static Luchador crearLuchador() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("¿Como se llamara tu luchador?");
 		String nombre = scan.nextLine();
