@@ -113,46 +113,55 @@ public class Luchador {
 		}
 	}
 
-	public void mejorarPersonaje() throws NumberFormatException {
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Puedes subir un atributo");
-		System.out.println("Tienes " + ph + " puntos de habilidad");
-		System.out.println("¿Cuantos puntos quieres subir a la fuerza?");
+	private int preguntarPuntos() {
 		int puntos;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Tienes " + ph + " puntos de habilidad");
+		puntos = Integer.parseInt(scan.nextLine());
+		return puntos;
+	}
+
+	private String preguntarRedirigirPuntos() {
+		Scanner scan = new Scanner(System.in);
 		String resp;
-			puntos = Integer.parseInt(scan.nextLine());
-			if ((ph - puntos) >= 0) {
-				ph = ph - puntos;
-				fuerza = fuerza + puntos;
+		System.out.println("No tienes puntos suficientes");
+		System.out.println("Todos tus puntos se van a redirigir a tu fuerza (y/n)");
+		resp = scan.nextLine();
+		return resp;
+	}
+
+	public void mejorarPersonaje() throws NumberFormatException {
+
+		System.out.println("¿Cuantos puntos quieres subir a la fuerza?");
+		int puntos = preguntarPuntos();
+		if ((ph - puntos) >= 0) {
+			ph = ph - puntos;
+			fuerza = fuerza + puntos;
+		} else {
+			String resp = preguntarRedirigirPuntos();
+			if (resp.equalsIgnoreCase("y")) {
+				fuerza = fuerza + ph;
+				ph = 0;
 			} else {
-				System.out.println("No tienes puntos suficientes");
-				System.out.println("Todos tus puntos se van a redirigir a tu fuerza (y/n)");
-				resp = scan.nextLine();
-				if (resp.equalsIgnoreCase("y")) {
-					fuerza = fuerza + ph;
-					ph = 0;
-				} else {
-					System.out.println("Podras subir la fuerza en el menu de 'MEJORA'");
-				}
+				System.out.println("Podras subir la fuerza en el menu de 'MEJORA'");
 			}
-			System.out.println("¿Cuantos puntos quieres subir a la vida?");
-			puntos = Integer.parseInt(scan.nextLine());
-			if ((ph - puntos) >= 0) {
-				ph = ph - puntos;
-				vidamax = vidamax + puntos;
+		}
+		System.out.println("¿Cuantos puntos quieres subir a la vida?");
+		puntos = preguntarPuntos();
+		if ((ph - puntos) >= 0) {
+			ph = ph - puntos;
+			vidamax = vidamax + puntos;
+			vida = vidamax;
+		} else {
+			String resp = preguntarRedirigirPuntos();
+			if (resp.equalsIgnoreCase("y")) {
+				vidamax = vidamax + ph;
 				vida = vidamax;
+				ph = 0;
 			} else {
-				System.out.println("No tienes puntos suficientes");
-				System.out.println("Todos tus puntos se van a redirigir a tu vida (y/n)");
-				resp = scan.nextLine();
-				if (resp.equalsIgnoreCase("y")) {
-					vidamax = vidamax + ph;
-					vida = vidamax;
-					ph = 0;
-				} else {
-					System.out.println("Podras subir la vida en el menu de 'MEJORA'");
-				}
+				System.out.println("Podras subir la vida en el menu de 'MEJORA'");
 			}
+		}
 
 	}
 
@@ -215,6 +224,22 @@ public class Luchador {
 		} else {
 			return false;
 		}
+	}
+
+	public void verPelea(int vida1, int fuerza1, int vida2, int fuerza2) throws Exception {
+		if (vida1 != 3 || fuerza1 != 3 || vida2 != 3 || fuerza2 != 3) {
+			throw new Exception("El numero tiene que ser 3");
+		} else {
+			Luchador enem = new Luchador();
+			enem.setNombre("Luchador1");
+			enem.setFuerza(fuerza1);
+			enem.setVida(vida1);
+			Luchador enem2 = new Luchador();
+			enem2.setNombre("Luchador2");
+			enem2.setFuerza(fuerza2);
+			enem2.setVida(vida2);
+		}
+
 	}
 
 	public static Luchador crearLuchador() {

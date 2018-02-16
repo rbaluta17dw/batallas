@@ -4,26 +4,28 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import vista.LuchaMenu;
+import batalla.*;
 
 public class PruebaUnitarias {
 
 	@Test(expected = NumberFormatException.class)
 	public void test() throws Exception {
-		LuchaMenu test = new LuchaMenu();
-		test.lanzarMenu();
+		String linea = "test";
+		Luchador prueba = new Luchador(linea);
+		prueba.mejorarPersonaje();
+
 	}
 
 	@Test
 	public void test2() {
 		try {
-			LuchaMenu test = new LuchaMenu();
-			test.lanzarMenu();
+			String linea = "test";
+			Luchador prueba = new Luchador(linea);
+			prueba.verPelea(9,9,9,9);
 			fail("se esperaba un error");
-		} catch (NumberFormatException e) {
-			
+		} catch (Exception e) {
+
 		}
 	}
-	
-	
+
 }
