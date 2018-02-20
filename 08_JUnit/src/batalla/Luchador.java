@@ -13,7 +13,12 @@ public class Luchador {
 	private int ph;
 
 	public Luchador() {
-
+		fuerza = 2;
+		vidamax = 10;
+		nivel = 1;
+		puntosxp = 0;
+		ph = 10;
+		vida = vidamax;
 	}
 
 	public Luchador(String nombre) {
@@ -227,7 +232,7 @@ public class Luchador {
 	}
 
 	public void verPelea(int vida1, int fuerza1, int vida2, int fuerza2) throws Exception {
-		if (vida1 != 3 || fuerza1 != 3 || vida2 != 3 || fuerza2 != 3) {
+		if (vida1 != 20 || fuerza1 != 5 || vida2 != 20 || fuerza2 != 5) {
 			throw new Exception("El numero tiene que ser 3");
 		} else {
 			Luchador enem = new Luchador();
@@ -238,6 +243,7 @@ public class Luchador {
 			enem2.setNombre("Luchador2");
 			enem2.setFuerza(fuerza2);
 			enem2.setVida(vida2);
+			enem.comenzarLucha();
 		}
 
 	}
